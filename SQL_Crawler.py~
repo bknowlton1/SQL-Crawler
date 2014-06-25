@@ -4,7 +4,7 @@ import os, io, re
 os.system('cls')
 
 def getMatches():
-    
+    '''startingDirectory = 'C:\\Users\\bknowlto\\Documents'''''
     startingDirectory = raw_input("Where would you like to search (enter file path): ")
     searchString = raw_input("What string would you like to search for: ")
 
