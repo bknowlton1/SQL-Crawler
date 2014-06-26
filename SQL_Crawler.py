@@ -4,7 +4,7 @@ import os, io, re
 os.system('cls')
 
 def getMatches():
-    
+    '''startingDirectory = 'C:\\Users\\bknowlto\\Documents'''''
     startingDirectory = raw_input("Where would you like to search (enter file path): ")
     searchString = raw_input("What string would you like to search for: ")
 
@@ -28,24 +28,27 @@ def getMatches():
 
 def viewMatchValues():
     fileMatches = getMatches()
-    fileMatches.sort()
     viewSQLText(fileMatches)
 
 def viewSQLText(fileMatches):
-    print "\nHere are the files that have matches:"
-    for i in range(0, len(fileMatches)):
-        print "%d: %s" % (i+1, fileMatches[i])
+    if len(fileMatches) != 0:
+        print "\nHere are the files that have matches:"
+        for i in range(0, len(fileMatches)):
+            print "%d: %s" % (i+1, fileMatches[i])
 
-    selection = raw_input("\nWhich sql file would you like to choose? (Enter the number to the left"
-                          " of the path): ")
-    print "Viewing %s\n\n" % (fileMatches[i-1])
-    filePathCommand = 'type "%s"' % (fileMatches[i-1])
-    print "\n"
-    os.system(filePathCommand)
+        selection = raw_input("\nWhich sql file would you like to choose? (Enter the number to the left"
+                              " of the path): ")
+        print "Viewing %s\n\n" % (fileMatches[int(selection)-1])
+        filePathCommand = 'type "%s"' % (fileMatches[int(selection)-1])
+        print "\n"
+        os.system(filePathCommand)
 
-    menuSelection = menuChoice()
-    if menuSelection.lower() == 'm':
-        viewSQLText(fileMatches)
+        menuSelection = menuChoice()
+        if menuSelection.lower() == 'm':
+            viewSQLText(fileMatches)
+    else:
+        print "\n\nNo Matches Found"
+        raw_input("\n\nPress Enter to Quit")
 
 def menuChoice():
     menuChoiceValue = raw_input("\n\nPress M to view the files again or Q to quit:  ")
